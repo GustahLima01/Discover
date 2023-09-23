@@ -1,0 +1,202 @@
+* {
+  /* * = é seletor universal, quer dizer que vai aplicar a todos body, nesse exemplo */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* box-sizing = mesmo tendo padding 0, ele mantém a medida da borda */
+}
+
+:root{
+  --text-color: white; /* criei a variavel  --text-color */
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light{
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/sun.svg);
+}
+
+body {
+  /* background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover; */
+
+  /* background: color image repeat position/size; */
+  background: var(--bg-url) no-repeat top center/cover;
+}
+
+body *{
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+}
+
+#container {
+  width: 360px;
+  margin: 56px auto 0px;
+  padding: 0 24px;
+
+/* border: 1px solid red; = inclusao de borda
+  padding-top: 56px; = margiem na parte superior, semelhante ao "margin"
+*/
+
+/*   
+margin é possivel utilizar sinalizando cada lado substituindo a conf abaixo
+
+  ## conf relogio ##
+  margin-top: 56px;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto; 
+
+  margin: 56px (ao redor de uma imagem por exemplo)
+  margin: 56px auto = 56px (em cima e abaixo) e auto nas laterais da imagem
+  margin: 56px auto 32px = 56px (em cima e abaixo), auto nas laterais 32px abaixo
+  margin: 56px auto 32px auto = conf relogio, sem precisar escrever tudo
+  */
+}
+
+/* profile */
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img{
+  width: 112px; 
+  /* 
+  margin: auto = elementos img não é possível aplicar o margin auto
+  height = altura não é necessário, pois ela vai empurrando as demais caixas p baixo 
+  */
+}
+
+#profile p{
+  font-weight: 500;
+  line-height: 25px;
+  margin-top: 8px;
+}
+
+/* switch */
+#switch{
+  border: 1px solid red;
+  position: relative; /* o position absoluto abaixo vai ser relativo a esse position */
+  width: 64px; /* o right abaixo vai considerar a position do width*/
+
+  margin: 4px auto;
+}
+
+#switch button{
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+
+  position: absolute; /* sobreposição de elementos, tornando este absoluto */
+  top: 50%; /* sobreposição posicionando na parte superior da tela ou elemento absoluto*/ 
+  /* botton:0; = sobreposição posicionando na parte inferior da tela*/ 
+   left:0; /*sobreposição posicionando na parte inicial a esquerda da tela*/ 
+  /*right: 0; sobreposição posicionando na parte inicial a direita da tela */  
+  z-index: 1; /* andares/camadas de sobreposição */
+  transform: translateY(-50%);
+  /* transform transforma o elemento (imagem) */
+  /* translateY eixo y deixando acima considerando pelo elemento absoluto */
+}
+
+.light #switch button{
+  right: 0;
+  left: initial; /* considera como posição inicial */
+}
+
+#switch span{ 
+  display: block;/* span tem display automatico */
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/* links */
+ul{
+  list-style: none; /* remove as * da linha */
+
+  display: flex;
+  flex-direction: column;  /* deixa as caixas em uma unica coluna, uma abaixo da outra */
+  gap: 16px; /*  deixa espaço entre elementos */
+   
+  padding: 24px 0;
+}
+
+ul li a{
+  /* tag a CSS é inline (exibido em bloco ou em outros elementos. Ocupa somente a largura do conteudo) */
+  /* border: 1px solid red; */
+
+  display: flex; /* deixa as caixas lado a lado (no melhor formato) em linha */
+  align-items: center; /* deixa as palavra na caixa centralizada onde ela está*/
+  justify-content: center; /* deixa as palavra na caixa centralizada no meio da caixa*/
+
+  padding: 16px 24px;
+
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  text-decoration: none; /* ulitizado p deixar uma linha, ai tem que possicionar */
+  font-weight: 500;
+
+  transition: background 0.2s; /* transiciona os elementos, pode adicionar tempo que levará a transição */
+}
+
+/* pseudo-selector é quando vc passa o mouse em cima = forma de selecionar elementos HTML com base em seu estado ou posição em relação a outros elementos.*/
+ul li a:hover{
+  background: var(--surface-color-hover);
+  border: 1.5px solid  var(--text-color);
+}
+
+/* social links */
+#social-links{
+  display: flex;
+  justify-content: center;
+
+  padding: 24px 0;
+
+  font-size: 24px;
+}
+
+
+#social-links a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  transition: background 0.2s;
+  border-radius: 50%;
+}
+
+#social-links a:hover{
+  background: var(--highlight-color);
+}
+
+footer{
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
